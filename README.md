@@ -1,6 +1,6 @@
 # Toy App
 
-This is a new version of the Ruby on Rails [Cinema Booking App](https://github.com/elsanceda/cinema_app), now with GraphQL.
+This is a new version of the Ruby on Rails [Cinema Booking App](https://github.com/elsanceda/cinema_app), now with GraphQL and Vue.js.
 
 ## Getting started
 
