@@ -6,6 +6,9 @@ ruby "3.2.2"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails",                      "~> 7.0.6"
 
+# Add GraphQL
+gem "graphql",                    "2.0.26"
+
 # For creating seeds and fixtures
 gem "faker",                      "3.2.0"
 
@@ -67,6 +70,9 @@ group :development do
   gem "listen"
   gem "spring"
   gem "spring-watcher-listen"
+
+  # GUI for querying GraphQL in the browser
+  gem "graphiql-rails", "1.9.0"
 end
 
 group :test do
