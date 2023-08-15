@@ -6,6 +6,13 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: true
+  has_secure_password
+  VALID_PASSWORD_REGEX = /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]/
+  password_format = "must include an uppercase letter, a lowercase letter, and a digit"
+  validates :password, presence: true, length: { minimum: 8 }, 
+                       format: { with: VALID_PASSWORD_REGEX, 
+                                 message: password_format },
+                                 allow_nil: true
   
   private
 

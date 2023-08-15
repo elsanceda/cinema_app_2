@@ -4,7 +4,8 @@ class UserTest < ActiveSupport::TestCase
   
   def setup
     @user = User.new(full_name: "Example User", mobile_number: "123",
-                     email: "user@example.com")
+                     email: "user@example.com", password: "Password1",
+                     password_confirmation: "Password1")
   end
   
   test "should be valid" do
@@ -43,14 +44,16 @@ class UserTest < ActiveSupport::TestCase
 
   test "mobile numbers should be unique" do
     duplicate_user = User.new(full_name: "Example User", mobile_number: "123",
-                              email: "user@example1.com")
+                              email: "user@example1.com", password: "Password1",
+                              password_confirmation: "Password1")
     @user.save
     assert_not duplicate_user.valid?
   end
 
   test "email addresses should be unique" do
     duplicate_user = User.new(full_name: "Example User", mobile_number: "321",
-                              email: "user@example.com")
+                              email: "user@example.com", password: "Password1",
+                              password_confirmation: "Password1")
     @user.save
     assert_not duplicate_user.valid?
   end
@@ -80,31 +83,31 @@ class UserTest < ActiveSupport::TestCase
     assert_equal mixed_case_email.downcase, @user.reload.email
   end
   
-  # test "password should be present (nonblank)" do
-  #   @user.password = @user.password_confirmation = " " * 6
-  #   assert_not @user.valid?
-  # end
-  #   
-  # test "password should have a minimum length" do
-  #   @user.password = @user.password_confirmation = "a" * 7
-  #   assert_not @user.valid?
-  # end
-  # 
-  # test "password validation should accept valid passwords" do
-  #   valid_passwords = %w[Password1 123IloveYou hey7arT$
-  #   !supR3m0s Fl1n<h3z]
-  #   valid_passwords.each do |valid_password|
-  #     @user.password = @user.password_confirmation = valid_password
-  #     assert @user.valid?, "#{valid_password.inspect} should be valid"
-  #   end
-  # end
-  # 
-  # test "password validation should reject invalid passwords" do
-  #   invalid_passwords = %w[short nonumbers nouppercase1
-  #   NOLOWERCASE1 12345678]
-  #   invalid_passwords.each do |invalid_password|
-  #     @user.password = @user.password_confirmation = invalid_password
-  #     assert_not @user.valid?, "#{invalid_password.inspect} should be invalid"
-  #   end
-  # end
+  test "password should be present (nonblank)" do
+    @user.password = @user.password_confirmation = " " * 6
+    assert_not @user.valid?
+  end
+    
+  test "password should have a minimum length" do
+    @user.password = @user.password_confirmation = "a" * 7
+    assert_not @user.valid?
+  end
+  
+  test "password validation should accept valid passwords" do
+    valid_passwords = %w[Password1 123IloveYou hey7arT$
+    !supR3m0s Fl1n<h3z]
+    valid_passwords.each do |valid_password|
+      @user.password = @user.password_confirmation = valid_password
+      assert @user.valid?, "#{valid_password.inspect} should be valid"
+    end
+  end
+  
+  test "password validation should reject invalid passwords" do
+    invalid_passwords = %w[short nonumbers nouppercase1
+    NOLOWERCASE1 12345678]
+    invalid_passwords.each do |invalid_password|
+      @user.password = @user.password_confirmation = invalid_password
+      assert_not @user.valid?, "#{invalid_password.inspect} should be invalid"
+    end
+  end
 end

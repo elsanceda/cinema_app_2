@@ -11,5 +11,10 @@
     full_name = Faker::Name.name
     mobile_number = Faker::PhoneNumber.cell_phone
     email = Faker::Internet.email(name: full_name, separators: %w(. _ - +))
-    User.create!(full_name: full_name, mobile_number: mobile_number, email: email)
+    password = "Password1"
+    User.create!(full_name: full_name, 
+                 mobile_number: mobile_number,
+                 email: email,
+                 password: password,
+                 password_confirmation: password)
 end
