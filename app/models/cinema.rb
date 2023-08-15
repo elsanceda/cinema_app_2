@@ -4,4 +4,5 @@ class Cinema < ApplicationRecord
   validates :seats, presence: true, 
                     inclusion: { in: (1..10),
                                  message: "must be between 1-10" }
+  default_scope -> { order(created_at: :desc) }
 end
