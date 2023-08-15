@@ -6,5 +6,6 @@ module Types
     field :create_cinema, mutation: Mutations::CreateCinema
     field :update_cinema, mutation: Mutations::UpdateCinema
     field :destroy_cinema, mutation: Mutations::DestroyCinema
+    field :create_movie, mutation: Mutations::CreateMovie
   end
 end
