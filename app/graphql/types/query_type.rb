@@ -23,5 +23,19 @@ module Types
     def current_user
       context[:current_user]
     end
+
+    # /cinemas
+    field :cinemas, [Types::CinemaType], null: false
+    def cinemas
+      Cinema.all
+    end
+
+    # /cinema
+    field :cinema, Types::CinemaType, null: false do
+      argument :id, ID, required: true
+    end
+    def cinema(id:)
+      Cinema.find(id)
+    end
   end
 end
