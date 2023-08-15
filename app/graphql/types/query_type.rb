@@ -17,5 +17,10 @@ module Types
     def user(id:)
       User.find(id)
     end
+
+    field :current_user, Types::UserType
+    def current_user
+      context[:current_user]
+    end
   end
 end
