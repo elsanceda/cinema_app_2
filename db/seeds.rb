@@ -18,3 +18,10 @@
                  password: password,
                  password_confirmation: password)
 end
+
+# Cinemas
+3.times do |n|
+    name = "#{Faker::Company.name} Theater"
+    location = "#{Faker::Address.street_name}, #{Faker::Address.city} City"
+    Cinema.create!(name: name, location: location, seats: 10-n)
+end
