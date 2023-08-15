@@ -25,3 +25,10 @@ end
     location = "#{Faker::Address.street_name}, #{Faker::Address.city} City"
     Cinema.create!(name: name, location: location, seats: 10-n)
 end
+
+# Movies
+3.times do
+    title = Faker::Movie.title
+    synopsis = Faker::Lorem.paragraph(sentence_count: 5)
+    Movie.create!(title: title, synopsis: synopsis)
+end
