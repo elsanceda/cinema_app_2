@@ -8,5 +8,6 @@ module Types
     field :destroy_cinema, mutation: Mutations::DestroyCinema
     field :create_movie, mutation: Mutations::CreateMovie
     field :update_movie, mutation: Mutations::UpdateMovie
+    field :destroy_movie, mutation: Mutations::DestroyMovie
   end
 end
