@@ -5,5 +5,6 @@ module Types
     field :logout_user, mutation: Mutations::LogoutUser
     field :create_cinema, mutation: Mutations::CreateCinema
     field :update_cinema, mutation: Mutations::UpdateCinema
+    field :destroy_cinema, mutation: Mutations::DestroyCinema
   end
 end
