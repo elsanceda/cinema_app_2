@@ -9,7 +9,10 @@ module Mutations
     argument :full_name, String, required: true
     argument :auth_provider, AuthProviderSignupData, required: true
 
-    type Types::UserType
+    # type Types::UserType
+
+    field :user, Types::UserType
+    field :errors, [String], null: false
 
     def resolve(full_name: nil, auth_provider: nil)
       user = User.new(full_name: full_name,
@@ -18,16 +21,11 @@ module Mutations
                       password: auth_provider&.[](:credentials)&.[](:password),
                       password_confirmation: auth_provider[:password_confirmation])
       if user.save
-        user
+        { user: user,
+          errors: [] }
       else
-        build_errors(user)
-        return
-      end
-    end
-
-    def build_errors(user)
-      user.errors.full_messages.each do |message|
-        context.add_error(GraphQL::ExecutionError.new(message))
+        { user: nil,
+          errors: user.errors.full_messages }
       end
     end
   end
