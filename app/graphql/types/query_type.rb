@@ -4,7 +4,7 @@ module Types
     include GraphQL::Types::Relay::HasNodeField
     include GraphQL::Types::Relay::HasNodesField
 
-    # /users NOTE: FOR TEST PURPOSES ONLY, DELETE LATER
+    # /users; NOTE: FOR TEST PURPOSES ONLY, DELETE LATER?
     field :users, [Types::UserType], null: false
     def users
       User.all
@@ -18,6 +18,7 @@ module Types
       User.find(id)
     end
 
+    # Returns current user; NOTE: FOR TEST PURPOSES ONLY, DELETE LATER?
     field :current_user, Types::UserType
     def current_user
       context[:current_user]
