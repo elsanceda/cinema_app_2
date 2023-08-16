@@ -32,3 +32,13 @@ end
     synopsis = Faker::Lorem.paragraph(sentence_count: 5)
     Movie.create!(title: title, synopsis: synopsis)
 end
+
+# Showings
+3.times do |n|
+    timeslot = 1000
+    cinema_id = n+1
+    movie_id = n+1
+    Showing.create!(timeslot: timeslot, 
+                    cinema_id: cinema_id, 
+                    movie_id: movie_id)
+end
