@@ -21,5 +21,6 @@ module Types
 
     # Bookings
     field :create_booking, mutation: Mutations::CreateBooking
+    field :destroy_booking, mutation: Mutations::DestroyBooking
   end
 end
