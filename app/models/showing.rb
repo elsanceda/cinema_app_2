@@ -7,4 +7,5 @@ class Showing < ApplicationRecord
   validates :timeslot, presence: true
   validates :timeslot, uniqueness: { scope: :cinema,
                                      message: "for that cinema already taken" }
+  has_many :bookings, dependent: :destroy
 end
