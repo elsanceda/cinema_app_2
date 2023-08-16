@@ -51,5 +51,19 @@ module Types
     def movie(id:)
       Movie.find(id)
     end
+
+    # /showings
+    field :showings, [Types::ShowingType], null: false
+    def showings
+      Showing.all
+    end
+
+    # /showing
+    field :showing, Types::ShowingType, null: false do
+      argument :id, ID, required: true
+    end
+    def showing(id:)
+      Showing.find(id)
+    end
   end
 end
