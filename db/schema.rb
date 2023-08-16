@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_15_154434) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_16_124217) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,6 +29,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_15_154434) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "showings", force: :cascade do |t|
+    t.integer "timeslot"
+    t.bigint "cinema_id", null: false
+    t.bigint "movie_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cinema_id", "timeslot"], name: "index_showings_on_cinema_id_and_timeslot", unique: true
+    t.index ["cinema_id"], name: "index_showings_on_cinema_id"
+    t.index ["movie_id"], name: "index_showings_on_movie_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "full_name"
     t.string "mobile_number"
@@ -40,4 +51,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_15_154434) do
     t.index ["mobile_number"], name: "index_users_on_mobile_number", unique: true
   end
 
+  add_foreign_key "showings", "cinemas"
+  add_foreign_key "showings", "movies"
 end

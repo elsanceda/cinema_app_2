@@ -5,4 +5,5 @@ class Cinema < ApplicationRecord
                     inclusion: { in: (1..10),
                                  message: "must be between 1-10" }
   default_scope -> { order(created_at: :desc) }
+  has_many :showings, dependent: :destroy
 end
