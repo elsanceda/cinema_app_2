@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
 module Types
-  class UserType < Types::BaseObject
+  class BookingType < Types::BaseObject
     field :id, ID, null: false
-    field :full_name, String, null: false
-    field :mobile_number, String, null: false
-    field :email, String, null: false
-    field :bookings, [Types::BookingType], null: false
+    field :seat_number, Integer
+    field :user, Types::UserType, null: false, method: :user
+    field :showing, Types::ShowingType, null: false, method: :showing
     # field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     # field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
   end
