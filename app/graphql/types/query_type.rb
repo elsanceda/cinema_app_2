@@ -65,5 +65,30 @@ module Types
     def showing(id:)
       Showing.find(id)
     end
+
+    # /bookings
+    field :bookings, [Types::BookingType], null: false
+    def bookings
+      Booking.all
+    end
+
+    # Returns list of seats that are already taken
+    field :booked_seats, [Integer], null: false do
+      argument :id, ID, required: true
+    end
+    def booked_seats(id:)
+      Booking.where(showing_id: id).pluck(:seat_number)
+    end
+
+    # Returns list of seats that are available for booking 
+    field :available_seats, [Integer], null: false do
+      argument :id, ID, required: true
+    end
+    def available_seats(id:)
+      showing = Showing.find(id)
+      seats = showing.cinema.seats
+      booked = booked_seats(id: id)
+      (1..seats).reject { |seat| booked.include?(seat) }
+    end
   end
 end

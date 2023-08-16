@@ -42,3 +42,15 @@ end
                     cinema_id: cinema_id, 
                     movie_id: movie_id)
 end
+
+# Bookings
+2.times do |n|
+    showing_id = n+1
+    2.times do |i|
+        user_id = i+1
+        seat_number = i+1
+        Booking.create!(seat_number: seat_number, 
+                        user_id: user_id, 
+                        showing_id: showing_id)
+    end
+end
