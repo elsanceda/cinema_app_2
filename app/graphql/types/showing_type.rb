@@ -3,7 +3,7 @@
 module Types
   class ShowingType < Types::BaseObject
     field :id, ID, null: false
-    field :timeslot, Integer
+    field :timeslot, Integer, null: false
     field :cinema, Types::CinemaType, null: false
     field :movie, Types::MovieType, null: false
     field :bookings, [Types::BookingType], null: false

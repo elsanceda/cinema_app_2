@@ -3,7 +3,7 @@
 module Types
   class BookingType < Types::BaseObject
     field :id, ID, null: false
-    field :seat_number, Integer
+    field :seat_number, Integer, null: false
     field :user, Types::UserType, null: false, method: :user
     field :showing, Types::ShowingType, null: false
     # field :created_at, GraphQL::Types::ISO8601DateTime, null: false

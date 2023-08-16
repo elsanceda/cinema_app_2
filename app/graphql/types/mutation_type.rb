@@ -18,5 +18,8 @@ module Types
     # Showings
     field :create_showing, mutation: Mutations::CreateShowing
     field :destroy_showing, mutation: Mutations::DestroyShowing
+
+    # Bookings
+    field :create_booking, mutation: Mutations::CreateBooking
   end
 end
