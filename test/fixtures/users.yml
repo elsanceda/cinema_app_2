@@ -1,1 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+archer:
+  full_name: Sterling Archer
+  mobile_number: '0'
+  email: duchess@example.gov
+  password_digest: <%= User.digest('Password1') %>
