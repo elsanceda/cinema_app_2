@@ -1,9 +1,5 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  title: MyString
-  synopsis: MyText
-
-two:
-  title: MyString
-  synopsis: MyText
+action:
+  title: Action Movie
+  synopsis: "This is an action movie"
