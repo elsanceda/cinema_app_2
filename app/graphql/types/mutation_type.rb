@@ -17,5 +17,6 @@ module Types
 
     # Showings
     field :create_showing, mutation: Mutations::CreateShowing
+    field :destroy_showing, mutation: Mutations::DestroyShowing
   end
 end
