@@ -13,6 +13,7 @@ class User < ApplicationRecord
                        format: { with: VALID_PASSWORD_REGEX, 
                                  message: password_format },
                                  allow_nil: true
+  has_many :bookings, dependent: :destroy
   
   # Returns the hash digest of the given string.
   def User.digest(string)
