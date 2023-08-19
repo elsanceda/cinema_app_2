@@ -11,7 +11,7 @@ module Mutations
 
     def resolve(name: nil, location: nil, seats: nil)
 
-      if context[:current_user]
+      if context[:current_user]&.admin?
         cinema = Cinema.new(name: name,
                             location: location,
                             seats: seats)
@@ -25,7 +25,7 @@ module Mutations
         end
         
       else
-        raise GraphQL::ExecutionError.new('You must be logged in to proceed')
+        raise GraphQL::ExecutionError.new('You must be logged in as an admin to proceed')
       end
     end
   end
