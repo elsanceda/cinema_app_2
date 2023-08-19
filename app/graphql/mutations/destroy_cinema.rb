@@ -5,11 +5,18 @@ module Mutations
     type Boolean, null: false
 
     def resolve(id: nil)
-      cinema = Cinema.find(id)
-      if cinema.destroy
-        true
+
+      if context[:current_user]
+        cinema = Cinema.find(id)
+
+        if cinema.destroy
+          true
+        else
+          false
+        end
+        
       else
-        false
+        raise GraphQL::ExecutionError.new('You must be logged in to proceed')
       end
     end
   end

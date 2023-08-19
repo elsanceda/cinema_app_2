@@ -9,14 +9,21 @@ module Mutations
     field :errors, [String], null: false
 
     def resolve(title: nil, synopsis: nil)
-      movie = Movie.new(title: title,
-                        synopsis: synopsis)
-      if movie.save
-        { movie: movie,
-          errors: [] }
+
+      if context[:current_user]
+        movie = Movie.new(title: title,
+                          synopsis: synopsis)
+
+        if movie.save
+          { movie: movie,
+            errors: [] }
+        else
+          { movie: nil,
+            errors: movie.errors.full_messages }
+        end
+        
       else
-        { movie: nil,
-          errors: movie.errors.full_messages }
+        raise GraphQL::ExecutionError.new('You must be logged in to proceed')
       end
     end
   end
