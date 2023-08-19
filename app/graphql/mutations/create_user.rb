@@ -21,6 +21,7 @@ module Mutations
                       password: auth_provider&.[](:credentials)&.[](:password),
                       password_confirmation: auth_provider[:password_confirmation])
       if user.save
+        context[:session][:user_id] = user.id
         { user: user,
           errors: [] }
       else
