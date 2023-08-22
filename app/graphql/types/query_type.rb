@@ -77,7 +77,7 @@ module Types
       argument :id, ID, required: true
     end
     def booked_seats(id:)
-      Booking.where(showing_id: id).pluck(:seat_number)
+      Showing.find(id).booked_seats
     end
 
     # Returns list of seats that are available for booking 
@@ -85,10 +85,7 @@ module Types
       argument :id, ID, required: true
     end
     def available_seats(id:)
-      showing = Showing.find(id)
-      seats = showing.cinema.seats
-      booked = booked_seats(id: id)
-      (1..seats).reject { |seat| booked.include?(seat) }
+      Showing.find(id).available_seats
     end
   end
 end
